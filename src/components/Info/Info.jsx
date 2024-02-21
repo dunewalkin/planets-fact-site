@@ -18,76 +18,40 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
    };   
 
    const getPlanetImage = async (tab) => {
-      try {
-        if (selectedPlanet) {
-          let imagePath;
-          let geologyImagePath;
-  
-          if (tab === 'overview') {
-            imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-            geologyImagePath = null;
-          } else if (tab === 'structure') {
-            imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
-            geologyImagePath = null;
-          } else if (tab === 'geology') {
-             imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-             geologyImagePath = `/assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
+     try {
+       if (selectedPlanet) {
+         let imagePath;
+         let geologyImagePath;
+ 
+         if (tab === 'overview') {
+           imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+           geologyImagePath = null;
+         } else if (tab === 'structure') {
+           imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+           geologyImagePath = null;
+         } else if (tab === 'geology') {
+            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
+         }
+
+ 
+         const planetImageModule = await import(imagePath);
+ 
+         setPlanetImage(planetImageModule.default);
+
+         if (geologyImagePath) {
+            const geologyImageModule = await import(geologyImagePath);
+            setGeologyImage(geologyImageModule.default);
+          } else {
+            setGeologyImage(null);
           }
- 
-  
-          const planetImageModule = await import(imagePath);
-  
-          setPlanetImage(planetImageModule.default);
- 
-          if (geologyImagePath) {
-             const geologyImageModule = await import(geologyImagePath);
-             setGeologyImage(geologyImageModule.default);
-           } else {
-             setGeologyImage(null);
-           }
- 
-        }
-      } catch (error) {
-        console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
-        setPlanetImage(null);
-      }
-    };
 
-   // const getPlanetImage = async (tab) => {
-   //   try {
-   //     if (selectedPlanet) {
-   //       let imagePath;
-   //       let geologyImagePath;
- 
-   //       if (tab === 'overview') {
-   //         imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-   //         geologyImagePath = null;
-   //       } else if (tab === 'structure') {
-   //         imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
-   //         geologyImagePath = null;
-   //       } else if (tab === 'geology') {
-   //          imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-   //          geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
-   //       }
-
- 
-   //       const planetImageModule = await import(imagePath);
- 
-   //       setPlanetImage(planetImageModule.default);
-
-   //       if (geologyImagePath) {
-   //          const geologyImageModule = await import(geologyImagePath);
-   //          setGeologyImage(geologyImageModule.default);
-   //        } else {
-   //          setGeologyImage(null);
-   //        }
-
-   //     }
-   //   } catch (error) {
-   //     console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
-   //     setPlanetImage(null);
-   //   }
-   // };
+       }
+     } catch (error) {
+       console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+       setPlanetImage(null);
+     }
+   };
 
   useEffect(() => {
   if (activeTab === 'overview' || activeTab === 'structure') {
@@ -113,12 +77,11 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
       {selectedPlanet && (
          <>
             <section className='top-section'>
-               <div className="pic-wrapper">
-               {planetImage && <img src={`${process.env.PUBLIC_URL}${planetImage}`} alt={selectedPlanet.name} />}
-                  {/* {planetImage && <img src={planetImage} alt={selectedPlanet.name} />} */}
+               <div className="pic-wrapper"> 
+                  {planetImage && <img src={planetImage} alt={selectedPlanet.name} />}
                   <div className="geology-pic">
-                  {isGeologyImageReset && geologyImage && <img src={`${process.env.PUBLIC_URL}${geologyImage}`} alt={`Geology of ${selectedPlanet.name}`} />}
-                     {/* {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>} */}
+                     {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}
+                    
                   </div>
                </div>
 
