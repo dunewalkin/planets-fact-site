@@ -24,14 +24,14 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
          let geologyImagePath;
  
          if (tab === 'overview') {
-           imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+           imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
            geologyImagePath = null;
          } else if (tab === 'structure') {
-           imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+           imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
            geologyImagePath = null;
          } else if (tab === 'geology') {
-            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-            geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
+            imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            geologyImagePath = `/assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
          }
 
  
