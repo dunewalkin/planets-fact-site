@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../components/Info/info.scss';
 import sourceIcon from '../../assets/images/icon-source.svg';
-// import planetMercury from '/src/assets/images/planet-mercury.svg';
+import planetMercury from '../../assets/images/planet-mercury.svg';
 
 const Info = ({ selectedPlanet, isInfoVisible }) => {
    const [activeTab, setActiveTab] = useState('overview');
@@ -34,7 +34,8 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
             imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
             geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
          }
-
+         console.log('imagePath:', imagePath);
+         console.log('geologyImagePath:', geologyImagePath);
  
          const planetImageModule = await import(imagePath);
  
@@ -50,6 +51,7 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
        }
      } catch (error) {
        console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+       
        setPlanetImage(null);
      }
    };
@@ -79,8 +81,8 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
          <>
             <section className='top-section'>
                <div className="pic-wrapper"> 
-                  {/* <img src={planetMercury} alt="" /> */}
-                  {planetImage && <img src={planetImage} alt={selectedPlanet.name} />}
+                  <img src={planetMercury} alt="" />
+                  {/* {planetImage && <img src={planetImage} alt={selectedPlanet.name} />} */}
                   <div className="geology-pic">
                      {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}
                     
