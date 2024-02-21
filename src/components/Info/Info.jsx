@@ -24,14 +24,14 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
           let geologyImagePath;
           
           if (tab === 'overview') {
-            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            imagePath = `planet-${selectedPlanet.name.toLowerCase()}.svg`;
             geologyImagePath = null;
           } else if (tab === 'structure') {
-            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+            imagePath = `planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
             geologyImagePath = null;
           } else if (tab === 'geology') {
-            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-            geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
+            imagePath = `planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            geologyImagePath = `geology-${selectedPlanet.name.toLowerCase()}.png`;
           }
     
           setPlanetImage(imagePath);
@@ -47,6 +47,7 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
         setPlanetImage(null);
       }
     };
+    
     
     
 
@@ -111,7 +112,8 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
          <>
             <section className='top-section'>
                <div className="pic-wrapper">
-               <img src={process.env.PUBLIC_URL + planetImage} alt={selectedPlanet.name} />
+                  <img src={`${process.env.PUBLIC_URL}/assets/images/${planetImage}`} alt={selectedPlanet.name} />
+
                   {/* {planetImage && <img src={planetImage} alt={selectedPlanet.name} />} */}
                   <div className="geology-pic">
                      {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}
