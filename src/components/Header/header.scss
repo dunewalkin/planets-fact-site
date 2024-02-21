@@ -1,0 +1,40 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.header-container {
+   @include flexbox(row, space-between, center, 0);
+   @include width-height(100%, 10%);
+   padding-inline: 2rem;
+   border-bottom: 1px solid hsl(var(--clr-white), .2);
+
+   @include mq (medium) {
+      @include flexbox(column, space-between, center, 0);
+      padding-top: 2rem;
+      @include width-height(100%, 10rem);
+   }
+
+   @include mq (small) {
+      padding: 0;
+      @include width-height(100%, auto);
+      border-bottom: none
+   }
+}
+
+.header-top {
+   @include mq (small) {
+      @include width-height(100%, auto);
+      @include flexbox(row, space-between, center, 0);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid hsl(var(--clr-white), .2);
+   }
+}
+
+.menu-btn {
+   display: none;
+   background-color: transparent;
+   border: none;
+
+   @include mq (small) {
+      display: block;     
+   }
+}

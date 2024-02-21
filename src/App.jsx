@@ -1,0 +1,42 @@
+import React, { useState, useEffect } from 'react';
+import './assets/styles/fonts.scss';
+import './assets/styles/global.scss';
+import Header from './components/Header/Header';
+import Info from './components/Info/Info';
+import data from './data.json'; 
+
+const App = () => {
+  const [selectedPlanet, setSelectedPlanet] = useState(null);
+  const [isPlanetSelected, setIsPlanetSelected] = useState(false);
+   const [isInfoVisible, setIsInfoVisible] = useState(true);
+   const [isNavVisible, setIsNavVisible] = useState(false);
+
+  const handlePlanetSelect = (planet) => {
+    setSelectedPlanet(planet);
+    setIsPlanetSelected(true);
+    setIsInfoVisible(false); // Скрыть Info
+    setIsNavVisible(true); // Показать навигацию
+  };
+
+  const toggleInfoVisibility = () => {
+   setIsInfoVisible((prevVisibility) => !prevVisibility); // Инвертируем состояние видимости Info
+   console.log('info' ,isInfoVisible);
+ };
+
+  useEffect(() => {
+    const initialPlanetData = data.find((planet) => planet.name === 'Mercury');
+    if (initialPlanetData) {
+      setSelectedPlanet(initialPlanetData);
+    }
+  }, []); 
+
+  return (
+    <main className='main-container'>
+      <Header onPlanetSelect={handlePlanetSelect} toggleInfoVisibility={toggleInfoVisibility} setIsNavVisible={setIsNavVisible} />
+      <Info selectedPlanet={selectedPlanet} isInfoVisible={isInfoVisible}/>
+    </main>
+  );
+};
+
+export default App;
+

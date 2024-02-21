@@ -1,0 +1,146 @@
+@use './mixins.scss' as *;
+@import './variables';
+
+html,
+body {
+    height: 100%;
+}
+
+*, *::before, *::after {
+   box-sizing: border-box;
+ }
+
+ * {
+   margin: 0;
+ }
+
+ body {
+   line-height: 1.5;
+   -webkit-font-smoothing: antialiased;
+ }
+
+ img, picture, video, canvas, svg {
+   display: block;
+   max-width: 100%;
+ }
+
+ input, button, textarea, select {
+   font: inherit;
+ }
+ 
+ p, h1, h2, h3, h4, h5, h6 {
+   overflow-wrap: break-word;
+   color: var(--clr-neutral-1);
+ }
+
+ h1, h2, h3, h4, h5, h6 {
+   text-transform: uppercase;
+ }
+
+ ul {
+   padding: 0;
+}
+
+ h1 {
+   font-family: Antonio, sans-serif;
+   font-size: 5rem;
+   font-weight: 400;
+   line-height: normal;
+
+   @include mq (medium) {
+      font-size: 3rem;
+   }
+
+   @include mq (small) {
+      font-size: 2.5rem;
+   }
+ }
+
+ h2 {
+   font-family: Antonio, sans-serif;
+   font-size: 2.5rem;
+   font-weight: 400;
+   line-height: normal;
+   letter-spacing: -0.09375rem;
+
+   @include mq (large) {
+      font-size: 2rem;
+   }
+
+   @include mq (medium) {
+      font-size: 1.5rem;
+   }
+
+   @include mq (small) {
+      font-size: 1.25rem;
+   }
+ }
+
+ h3 {
+   font-family: Antonio, sans-serif;
+   font-size: 1.75rem;
+   font-weight: 400;
+   line-height: normal;
+   letter-spacing: -0.06563rem;
+ }
+
+ h4 {
+   font-family: League Spartan, sans-serif;
+   font-size: 0.75rem;
+   font-weight: 700;
+   line-height: 1.5625rem; /* 208.333% */
+   letter-spacing: 0.16069rem;
+
+   @include mq (small) {
+      font-size: 0.5625rem;
+      line-height: normal;
+      letter-spacing: 0.12056rem;
+      color: hsl(var(--clr-white), .5);
+   }
+ }
+
+ h5 {
+   font-family: League Spartan, sans-serif;
+   font-size: 0.6875rem;
+   font-weight: 700;
+   line-height: 1.5625rem; /* 227.273% */
+   letter-spacing: 0.0625rem;
+ }
+
+ h6 {
+   font-family: League Spartan, sans-serif;
+   font-size: 0.5rem;
+   font-weight: 700;
+   line-height: 1rem; /* 200% */
+   letter-spacing: 0.04544rem;
+ }
+
+p {
+   font-family: League Spartan, sans-serif;
+   font-size: 0.875rem;
+   font-weight: 400;
+   line-height: 1.5625rem;
+}
+
+ body {
+   background: var(--clr-neutral-2);
+   background-image: url(../images/background-stars.svg);
+ }
+
+
+#root,
+ .main-container {
+   @include width-height(100%, 100%);
+   // width: 100%;
+   // min-height: 100vh;
+
+   @include mq (small) {
+      height: auto;
+   }
+ }
+
+ .main-container {
+   @include flexbox(column, flex-start, flex-start, 0);
+
+  
+ }
