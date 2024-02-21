@@ -14,13 +14,12 @@ const App = () => {
   const handlePlanetSelect = (planet) => {
     setSelectedPlanet(planet);
     setIsPlanetSelected(true);
-    setIsInfoVisible(false); // Скрыть Info
-    setIsNavVisible(true); // Показать навигацию
+    setIsInfoVisible(false); 
+    setIsNavVisible(true); 
   };
 
   const toggleInfoVisibility = () => {
-   setIsInfoVisible((prevVisibility) => !prevVisibility); // Инвертируем состояние видимости Info
-   console.log('info' ,isInfoVisible);
+   setIsInfoVisible((prevVisibility) => !prevVisibility);
  };
 
   useEffect(() => {

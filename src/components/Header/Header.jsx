@@ -9,7 +9,6 @@ const Header = ({ onPlanetSelect, toggleInfoVisibility }) => {
   const toggleNavVisibility = () => {
     setIsNavVisible((prevVisibility) => !prevVisibility);
     toggleInfoVisibility();
-    console.log('nav', isNavVisible);
   };
 
   return (
