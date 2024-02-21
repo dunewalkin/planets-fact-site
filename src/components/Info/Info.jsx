@@ -119,8 +119,8 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
          <>
             <section className='top-section'>
                <div className="pic-wrapper"> 
-                  <img src={planetMercury} alt="" />
-                  {/* {planetImage && <img src={planetImage} alt={selectedPlanet.name} />} */}
+                  {/* <img src={planetMercury} alt="" /> */}
+                  {planetImage && <img src={planetImage} alt={selectedPlanet.name} />}
                   <div className="geology-pic">
                      {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}
                     
