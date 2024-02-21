@@ -24,22 +24,20 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
           let geologyImagePath;
           
           if (tab === 'overview') {
-            imagePath = `planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
             geologyImagePath = null;
           } else if (tab === 'structure') {
-            imagePath = `planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
             geologyImagePath = null;
           } else if (tab === 'geology') {
-            imagePath = `planet-${selectedPlanet.name.toLowerCase()}.svg`;
-            geologyImagePath = `geology-${selectedPlanet.name.toLowerCase()}.png`;
+            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
           }
     
-          const planetImage = require(`../../assets/images/${imagePath}`);
-          setPlanetImage(planetImage.default);
+          setPlanetImage(imagePath);
     
           if (geologyImagePath) {
-            const geologyImage = require(`../../assets/images/${geologyImagePath}`);
-            setGeologyImage(geologyImage.default);
+            setGeologyImage(geologyImagePath);
           } else {
             setGeologyImage(null);
           }
@@ -49,6 +47,7 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
         setPlanetImage(null);
       }
     };
+    
     
 
    // const getPlanetImage = async (tab) => {
@@ -112,7 +111,8 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
          <>
             <section className='top-section'>
                <div className="pic-wrapper">
-                  {planetImage && <img src={planetImage} alt={selectedPlanet.name} />}
+               <img src={process.env.PUBLIC_URL + planetImage} alt={selectedPlanet.name} />
+                  {/* {planetImage && <img src={planetImage} alt={selectedPlanet.name} />} */}
                   <div className="geology-pic">
                      {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}
                     
