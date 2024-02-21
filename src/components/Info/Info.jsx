@@ -15,41 +15,43 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
  
    const generatePlanetColor = (planetName) => {
      return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
-   };
- 
+   };   
+
    const getPlanetImage = async (tab) => {
       try {
         if (selectedPlanet) {
           let imagePath;
           let geologyImagePath;
-          
+  
           if (tab === 'overview') {
-            imagePath = `planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
             geologyImagePath = null;
           } else if (tab === 'structure') {
-            imagePath = `planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+            imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
             geologyImagePath = null;
           } else if (tab === 'geology') {
-            imagePath = `planet-${selectedPlanet.name.toLowerCase()}.svg`;
-            geologyImagePath = `geology-${selectedPlanet.name.toLowerCase()}.png`;
+             imagePath = `/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+             geologyImagePath = `/assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
           }
-    
-          setPlanetImage(imagePath);
-    
+ 
+  
+          const planetImageModule = await import(imagePath);
+  
+          setPlanetImage(planetImageModule.default);
+ 
           if (geologyImagePath) {
-            setGeologyImage(geologyImagePath);
-          } else {
-            setGeologyImage(null);
-          }
+             const geologyImageModule = await import(geologyImagePath);
+             setGeologyImage(geologyImageModule.default);
+           } else {
+             setGeologyImage(null);
+           }
+ 
         }
       } catch (error) {
         console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
         setPlanetImage(null);
       }
     };
-    
-    
-    
 
    // const getPlanetImage = async (tab) => {
    //   try {
@@ -112,12 +114,11 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
          <>
             <section className='top-section'>
                <div className="pic-wrapper">
-                  <img src={`${process.env.PUBLIC_URL}/assets/images/${planetImage}`} alt={selectedPlanet.name} />
-
+               {planetImage && <img src={`${process.env.PUBLIC_URL}${planetImage}`} alt={selectedPlanet.name} />}
                   {/* {planetImage && <img src={planetImage} alt={selectedPlanet.name} />} */}
                   <div className="geology-pic">
-                     {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}
-                    
+                  {isGeologyImageReset && geologyImage && <img src={`${process.env.PUBLIC_URL}${geologyImage}`} alt={`Geology of ${selectedPlanet.name}`} />}
+                     {/* {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>} */}
                   </div>
                </div>
 
