@@ -16,79 +16,42 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
    const generatePlanetColor = (planetName) => {
      return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
    };
-
+ 
    const getPlanetImage = async (tab) => {
-      try {
-        if (selectedPlanet) {
-          let imagePath;
-          let geologyImagePath;
-    
-          const planetName = selectedPlanet.name.toLowerCase();
-          const baseURL = process.env.PUBLIC_URL || '';
-    
-          if (tab === 'overview') {
-            imagePath = `${baseURL}/assets/images/planet-${planetName}.svg`;
-            geologyImagePath = null;
-          } else if (tab === 'structure') {
-            imagePath = `${baseURL}/assets/images/planet-${planetName}-internal.svg`;
-            geologyImagePath = null;
-          } else if (tab === 'geology') {
-            imagePath = `${baseURL}/assets/images/planet-${planetName}.svg`;
-            geologyImagePath = `${baseURL}/assets/images/geology-${planetName}.png`;
-          }
-    
-          const planetImageModule = await import(imagePath);
-          setPlanetImage(planetImageModule.default);
-    
-          if (geologyImagePath) {
+     try {
+       if (selectedPlanet) {
+         let imagePath;
+         let geologyImagePath;
+ 
+         if (tab === 'overview') {
+           imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+           geologyImagePath = null;
+         } else if (tab === 'structure') {
+           imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+           geologyImagePath = null;
+         } else if (tab === 'geology') {
+            imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+            geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
+         }
+
+ 
+         const planetImageModule = await import(imagePath);
+ 
+         setPlanetImage(planetImageModule.default);
+
+         if (geologyImagePath) {
             const geologyImageModule = await import(geologyImagePath);
             setGeologyImage(geologyImageModule.default);
           } else {
             setGeologyImage(null);
           }
-        }
-      } catch (error) {
-        console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
-        setPlanetImage(null);
-      }
-    };
-    
- 
-   // const getPlanetImage = async (tab) => {
-   //   try {
-   //     if (selectedPlanet) {
-   //       let imagePath;
-   //       let geologyImagePath;
- 
-   //       if (tab === 'overview') {
-   //         imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-   //         geologyImagePath = null;
-   //       } else if (tab === 'structure') {
-   //         imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
-   //         geologyImagePath = null;
-   //       } else if (tab === 'geology') {
-   //          imagePath = `../../assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
-   //          geologyImagePath = `../../assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
-   //       }
 
- 
-   //       const planetImageModule = await import(imagePath);
- 
-   //       setPlanetImage(planetImageModule.default);
-
-   //       if (geologyImagePath) {
-   //          const geologyImageModule = await import(geologyImagePath);
-   //          setGeologyImage(geologyImageModule.default);
-   //        } else {
-   //          setGeologyImage(null);
-   //        }
-
-   //     }
-   //   } catch (error) {
-   //     console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
-   //     setPlanetImage(null);
-   //   }
-   // };
+       }
+     } catch (error) {
+       console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+       setPlanetImage(null);
+     }
+   };
 
   useEffect(() => {
   if (activeTab === 'overview' || activeTab === 'structure') {
