@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../components/Info/info.scss';
 import sourceIcon from '../../assets/images/icon-source.svg';
-import data from '../../data.json';
-import planetMercury from '../../assets/images/planet-mercury.svg';
 
 const Info = ({ selectedPlanet, isInfoVisible }) => {
    const [activeTab, setActiveTab] = useState('overview');
