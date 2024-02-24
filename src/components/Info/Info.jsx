@@ -8,11 +8,11 @@ const Info = () => {
    const changePlanet = (planet) => {
      setCurrentPlanet(planet);
    };
- 
+
    return (
      <div>
        {/* Показывать текущее изображение планеты */}
-       <img src={currentPlanet.images.planet} alt={currentPlanet.name} />
+       <img src={`../../${currentPlanet.images.planet}`} alt={currentPlanet.name} />
  
        {/* Кнопки для выбора других планет */}
        {data.map((planet, index) => (
@@ -25,6 +25,10 @@ const Info = () => {
  }
 
 export default Info;
+
+
+
+
 
 
 
