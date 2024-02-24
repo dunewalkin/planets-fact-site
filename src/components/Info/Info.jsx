@@ -18,14 +18,14 @@ import planetNeptuneInternal from '../../assets/images/planet-neptune-internal.s
 import planetSaturnInternal from '../../assets/images/planet-saturn-internal.svg';
 import planetUranusInternal from '../../assets/images/planet-uranus-internal.svg';
 import planetVenusInternal from '../../assets/images/planet-venus-internal.svg';
-import geologyEarth from '../../assets/images/geology-earth.png';
-import geologyJupiter from '../../assets/images/geology-jupiter.png';
-import geologyMars from '../../assets/images/geology-mars.png';
-import geologyMercury from '../../assets/images/geology-mercury.png';
-import geologyNeptune from '../../assets/images/geology-neptune.png';
-import geologySaturn from '../../assets/images/geology-saturn.png';
-import geologyUranus from '../../assets/images/geology-uranus.png';
-import geologyVenus from '../../assets/images/geology-venus.png';
+import planetGeologyEarth from '../../assets/images/geology-earth.png';
+import planetGeologyJupiter from '../../assets/images/geology-jupiter.png';
+import planetGeologyMars from '../../assets/images/geology-mars.png';
+import planetGeologyMercury from '../../assets/images/geology-mercury.png';
+import planetGeologyNeptune from '../../assets/images/geology-neptune.png';
+import planetGeologySaturn from '../../assets/images/geology-saturn.png';
+import planetGeologyUranus from '../../assets/images/geology-uranus.png';
+import planetGeologyVenus from '../../assets/images/geology-venus.png';
 
 
 
@@ -97,15 +97,13 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
               break;
             case 'geology':
               imagePath = getImagePath(selectedPlanet.name);
-              geologyImagePath = getImagePath(`geology${selectedPlanet.name}`);
+              geologyImagePath = getImagePath(`Geology${selectedPlanet.name}`);
               break;
             default:
               imagePath = null;
               geologyImagePath = null;
               break;
           }
-
-          console.log(imagePath);
     
           const planetImageModule = await import(imagePath);
           setPlanetImage(planetImageModule.default);
@@ -124,9 +122,9 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
     };
     
     const getImagePath = (planetName, suffix = '') => {
-      const normalizedPlanetName = planetName;
-      return eval(`planet${normalizedPlanetName}${suffix}`);
+      return eval(`planet${planetName}${suffix}`);
     };
+    
     
     
 
