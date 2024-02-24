@@ -1,31 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../components/Info/info.scss';
 import sourceIcon from '../../assets/images/icon-source.svg';
-import data from '../../data.json';
-import planetEarth from '../../assets/images/planet-earth.svg';
-import planetJupiter from '../../assets/images/planet-jupiter.svg';
-import planetMars from '../../assets/images/planet-mars.svg';
-import planetMercury from '../../assets/images/planet-mercury.svg';
-import planetNeptune from '../../assets/images/planet-neptune.svg';
-import planetSaturn from '../../assets/images/planet-saturn.svg';
-import planetUranus from '../../assets/images/planet-uranus.svg';
-import planetVenus from '../../assets/images/planet-venus.svg';
-import planetEarthInternal from '../../assets/images/planet-earth-internal.svg';
-import planetJupiterInternal from '../../assets/images/planet-jupiter-internal.svg';
-import planetMarsInternal from '../../assets/images/planet-mars-internal.svg';
-import planetMercuryInternal from '../../assets/images/planet-mercury-internal.svg';
-import planetNeptuneInternal from '../../assets/images/planet-neptune-internal.svg';
-import planetSaturnInternal from '../../assets/images/planet-saturn-internal.svg';
-import planetUranusInternal from '../../assets/images/planet-uranus-internal.svg';
-import planetVenusInternal from '../../assets/images/planet-venus-internal.svg';
-import planetGeologyEarth from '../../assets/images/geology-earth.png';
-import planetGeologyJupiter from '../../assets/images/geology-jupiter.png';
-import planetGeologyMars from '../../assets/images/geology-mars.png';
-import planetGeologyMercury from '../../assets/images/geology-mercury.png';
-import planetGeologyNeptune from '../../assets/images/geology-neptune.png';
-import planetGeologySaturn from '../../assets/images/geology-saturn.png';
-import planetGeologyUranus from '../../assets/images/geology-uranus.png';
-import planetGeologyVenus from '../../assets/images/geology-venus.png';
+
 
 
 
@@ -44,66 +20,25 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
      return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
    };   
 
-   // const getPlanetImage = async (tab) => {
-   //    try {
-   //      if (selectedPlanet) {
-   //        let imagePath;
-   //        let geologyImagePath;
-    
-   //        if (tab === 'overview') {
-   //          imagePath = selectedPlanet.images.planet;
-   //          geologyImagePath = null;
-   //        } else if (tab === 'structure') {
-   //          imagePath = selectedPlanet.images.internal;
-   //          geologyImagePath = null;
-   //        } else if (tab === 'geology') {
-   //          imagePath = selectedPlanet.images.planet;
-   //          geologyImagePath = selectedPlanet.images.geology;
-   //        }
-    
-   //        console.log('imagePath:', imagePath);
-   //        console.log('geologyImagePath:', geologyImagePath);
-    
-   //        const planetImageModule = await import(imagePath);
-   //        setPlanetImage(planetImageModule.default);
-    
-   //        if (geologyImagePath) {
-   //          const geologyImageModule = await import(geologyImagePath);
-   //          setGeologyImage(geologyImageModule.default);
-   //        } else {
-   //          setGeologyImage(null);
-   //        }
-   //      }
-   //    } catch (error) {
-   //      console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
-   //      setPlanetImage(null);
-   //    }
-   //  };
-
    const getPlanetImage = async (tab) => {
       try {
         if (selectedPlanet) {
           let imagePath;
           let geologyImagePath;
     
-          switch (tab) {
-            case 'overview':
-              imagePath = getImagePath(selectedPlanet.name);
-              geologyImagePath = null;
-              break;
-            case 'structure':
-              imagePath = getImagePath(selectedPlanet.name, 'Internal');
-              geologyImagePath = null;
-              break;
-            case 'geology':
-              imagePath = getImagePath(selectedPlanet.name);
-              geologyImagePath = getImagePath(`Geology${selectedPlanet.name}`);
-              break;
-            default:
-              imagePath = null;
-              geologyImagePath = null;
-              break;
+          if (tab === 'overview') {
+            imagePath = selectedPlanet.images.planet;
+            geologyImagePath = null;
+          } else if (tab === 'structure') {
+            imagePath = selectedPlanet.images.internal;
+            geologyImagePath = null;
+          } else if (tab === 'geology') {
+            imagePath = selectedPlanet.images.planet;
+            geologyImagePath = selectedPlanet.images.geology;
           }
+    
+          console.log('imagePath:', imagePath);
+          console.log('geologyImagePath:', geologyImagePath);
     
           const planetImageModule = await import(imagePath);
           setPlanetImage(planetImageModule.default);
@@ -120,21 +55,62 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
         setPlanetImage(null);
       }
     };
+
+   // const getPlanetImage = async (tab) => {
+   //    try {
+   //      if (selectedPlanet) {
+   //        let imagePath;
+   //        let geologyImagePath;
     
-    const getImagePath = (planetName, suffix = '') => {
-      const planetImages = {
-        mercury: planetMercury,
-        venus: planetVenus,
-        earth: planetEarth,
-        mars: planetMars,
-        jupiter: planetJupiter,
-        saturn: planetSaturn,
-        uranus: planetUranus,
-        neptune: planetNeptune,
-      };
+   //        switch (tab) {
+   //          case 'overview':
+   //            imagePath = getImagePath(selectedPlanet.name);
+   //            geologyImagePath = null;
+   //            break;
+   //          case 'structure':
+   //            imagePath = getImagePath(selectedPlanet.name, 'Internal');
+   //            geologyImagePath = null;
+   //            break;
+   //          case 'geology':
+   //            imagePath = getImagePath(selectedPlanet.name);
+   //            geologyImagePath = getImagePath(`Geology${selectedPlanet.name}`);
+   //            break;
+   //          default:
+   //            imagePath = null;
+   //            geologyImagePath = null;
+   //            break;
+   //        }
     
-      return planetImages[planetName.toLowerCase() + suffix];
-    };
+   //        const planetImageModule = await import(imagePath);
+   //        setPlanetImage(planetImageModule.default);
+    
+   //        if (geologyImagePath) {
+   //          const geologyImageModule = await import(geologyImagePath);
+   //          setGeologyImage(geologyImageModule.default);
+   //        } else {
+   //          setGeologyImage(null);
+   //        }
+   //      }
+   //    } catch (error) {
+   //      console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+   //      setPlanetImage(null);
+   //    }
+   //  };
+    
+   //  const getImagePath = (planetName, suffix = '') => {
+   //    const planetImages = {
+   //      mercury: planetMercury,
+   //      venus: planetVenus,
+   //      earth: planetEarth,
+   //      mars: planetMars,
+   //      jupiter: planetJupiter,
+   //      saturn: planetSaturn,
+   //      uranus: planetUranus,
+   //      neptune: planetNeptune,
+   //    };
+    
+   //    return planetImages[planetName.toLowerCase() + suffix];
+   //  };
 
    //  const getImagePath = (planetName, suffix = '') => {
    //    return eval(`planet${planetName}${suffix}`);
@@ -674,3 +650,32 @@ export default Info
    //    geologyuranus: geologyUranus,
    //    geologyvenus: geologyVenus,
    //  };
+
+
+
+
+// import data from '../../data.json';
+// import planetEarth from '../../assets/images/planet-earth.svg';
+// import planetJupiter from '../../assets/images/planet-jupiter.svg';
+// import planetMars from '../../assets/images/planet-mars.svg';
+// import planetMercury from '../../assets/images/planet-mercury.svg';
+// import planetNeptune from '../../assets/images/planet-neptune.svg';
+// import planetSaturn from '../../assets/images/planet-saturn.svg';
+// import planetUranus from '../../assets/images/planet-uranus.svg';
+// import planetVenus from '../../assets/images/planet-venus.svg';
+// import planetEarthInternal from '../../assets/images/planet-earth-internal.svg';
+// import planetJupiterInternal from '../../assets/images/planet-jupiter-internal.svg';
+// import planetMarsInternal from '../../assets/images/planet-mars-internal.svg';
+// import planetMercuryInternal from '../../assets/images/planet-mercury-internal.svg';
+// import planetNeptuneInternal from '../../assets/images/planet-neptune-internal.svg';
+// import planetSaturnInternal from '../../assets/images/planet-saturn-internal.svg';
+// import planetUranusInternal from '../../assets/images/planet-uranus-internal.svg';
+// import planetVenusInternal from '../../assets/images/planet-venus-internal.svg';
+// import planetGeologyEarth from '../../assets/images/geology-earth.png';
+// import planetGeologyJupiter from '../../assets/images/geology-jupiter.png';
+// import planetGeologyMars from '../../assets/images/geology-mars.png';
+// import planetGeologyMercury from '../../assets/images/geology-mercury.png';
+// import planetGeologyNeptune from '../../assets/images/geology-neptune.png';
+// import planetGeologySaturn from '../../assets/images/geology-saturn.png';
+// import planetGeologyUranus from '../../assets/images/geology-uranus.png';
+// import planetGeologyVenus from '../../assets/images/geology-venus.png';
