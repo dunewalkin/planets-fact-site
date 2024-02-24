@@ -122,8 +122,23 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
     };
     
     const getImagePath = (planetName, suffix = '') => {
-      return eval(`planet${planetName}${suffix}`);
+      const planetImages = {
+        mercury: planetMercury,
+        venus: planetVenus,
+        earth: planetEarth,
+        mars: planetMars,
+        jupiter: planetJupiter,
+        saturn: planetSaturn,
+        uranus: planetUranus,
+        neptune: planetNeptune,
+      };
+    
+      return planetImages[planetName.toLowerCase() + suffix];
     };
+
+   //  const getImagePath = (planetName, suffix = '') => {
+   //    return eval(`planet${planetName}${suffix}`);
+   //  };
     
     
     
