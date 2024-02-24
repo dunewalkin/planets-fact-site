@@ -44,25 +44,104 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
      return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
    };   
 
+   // const getPlanetImage = async (tab) => {
+   //    try {
+   //      if (selectedPlanet) {
+   //        let imagePath;
+   //        let geologyImagePath;
+    
+   //        if (tab === 'overview') {
+   //          imagePath = selectedPlanet.images.planet;
+   //          geologyImagePath = null;
+   //        } else if (tab === 'structure') {
+   //          imagePath = selectedPlanet.images.internal;
+   //          geologyImagePath = null;
+   //        } else if (tab === 'geology') {
+   //          imagePath = selectedPlanet.images.planet;
+   //          geologyImagePath = selectedPlanet.images.geology;
+   //        }
+    
+   //        console.log('imagePath:', imagePath);
+   //        console.log('geologyImagePath:', geologyImagePath);
+    
+   //        const planetImageModule = await import(imagePath);
+   //        setPlanetImage(planetImageModule.default);
+    
+   //        if (geologyImagePath) {
+   //          const geologyImageModule = await import(geologyImagePath);
+   //          setGeologyImage(geologyImageModule.default);
+   //        } else {
+   //          setGeologyImage(null);
+   //        }
+   //      }
+   //    } catch (error) {
+   //      console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+   //      setPlanetImage(null);
+   //    }
+   //  };
+
+   // const getPlanetImage = async (tab) => {
+   //          try {
+   //            if (selectedPlanet) {
+   //              let imagePath;
+   //              let geologyImagePath;
+        
+   //              if (tab === 'overview') {
+   //                imagePath = `/src/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+   //                geologyImagePath = null;
+   //              } else if (tab === 'structure') {
+   //                imagePath = `/src/assets/images/planet-${selectedPlanet.name.toLowerCase()}-internal.svg`;
+   //                geologyImagePath = null;
+   //              } else if (tab === 'geology') {
+   //                 imagePath = `/src/assets/images/planet-${selectedPlanet.name.toLowerCase()}.svg`;
+   //                 geologyImagePath = `/src/assets/images/geology-${selectedPlanet.name.toLowerCase()}.png`;
+   //              }
+   //              console.log('imagePath:', imagePath);
+   //              console.log('geologyImagePath:', geologyImagePath);
+        
+   //              const planetImageModule = await import(imagePath);
+        
+   //              setPlanetImage(planetImageModule.default);
+       
+   //              if (geologyImagePath) {
+   //                 const geologyImageModule = await import(geologyImagePath);
+   //                 setGeologyImage(geologyImageModule.default);
+   //               } else {
+   //                 setGeologyImage(null);
+   //               }
+       
+   //            }
+   //          } catch (error) {
+   //            console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+              
+   //            setPlanetImage(null);
+   //          }
+   //        };
+    
    const getPlanetImage = async (tab) => {
       try {
         if (selectedPlanet) {
           let imagePath;
           let geologyImagePath;
     
-          if (tab === 'overview') {
-            imagePath = selectedPlanet.images.planet;
-            geologyImagePath = null;
-          } else if (tab === 'structure') {
-            imagePath = selectedPlanet.images.internal;
-            geologyImagePath = null;
-          } else if (tab === 'geology') {
-            imagePath = selectedPlanet.images.planet;
-            geologyImagePath = selectedPlanet.images.geology;
+          switch (tab) {
+            case 'overview':
+              imagePath = planetImages[`planet${selectedPlanet.name.toLowerCase()}`];
+              geologyImagePath = null;
+              break;
+            case 'structure':
+              imagePath = planetImages[`planet${selectedPlanet.name.toLowerCase()}Internal`];
+              geologyImagePath = null;
+              break;
+            case 'geology':
+              imagePath = planetImages[`planet${selectedPlanet.name.toLowerCase()}`];
+              geologyImagePath = planetImages[`geology${selectedPlanet.name.toLowerCase()}`];
+              break;
+            default:
+              imagePath = null;
+              geologyImagePath = null;
+              break;
           }
-    
-          console.log('imagePath:', imagePath);
-          console.log('geologyImagePath:', geologyImagePath);
     
           const planetImageModule = await import(imagePath);
           setPlanetImage(planetImageModule.default);
@@ -80,6 +159,33 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
       }
     };
     
+    // Объект с импортированными изображениями планет и их геологических структур
+    const planetImages = {
+      planetearth: planetEarth,
+      planetjupiter: planetJupiter,
+      planetmars: planetMars,
+      planetmercury: planetMercury,
+      planetneptune: planetNeptune,
+      planetsaturn: planetSaturn,
+      planeturanus: planetUranus,
+      planetvenus: planetVenus,
+      planetearthinternal: planetEarthInternal,
+      planetjupiterinternal: planetJupiterInternal,
+      planetmarsinternal: planetMarsInternal,
+      planetmercuryinternal: planetMercuryInternal,
+      planetneptuneinternal: planetNeptuneInternal,
+      planetsaturninternal: planetSaturnInternal,
+      planeturanusinternal: planetUranusInternal,
+      planetvenusinternal: planetVenusInternal,
+      geologyearth: geologyEarth,
+      geologyjupiter: geologyJupiter,
+      geologymars: geologyMars,
+      geologymercury: geologyMercury,
+      geologyneptune: geologyNeptune,
+      geologysaturn: geologySaturn,
+      geologyuranus: geologyUranus,
+      geologyvenus: geologyVenus,
+    };
     
 
   useEffect(() => {
