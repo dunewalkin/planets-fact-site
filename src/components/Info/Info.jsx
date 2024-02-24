@@ -5,7 +5,7 @@ import data from '../../data.json';
 import planetEarth from '../../assets/images/planet-earth.svg';
 import planetJupiter from '../../assets/images/planet-jupiter.svg';
 import planetMars from '../../assets/images/planet-mars.svg';
-import planetMercury from '../../assets/images/planet-mercury.svg';
+import planetMercury from '/src/assets/images/planet-mercury.svg';
 import planetNeptune from '../../assets/images/planet-neptune.svg';
 import planetSaturn from '../../assets/images/planet-saturn.svg';
 import planetUranus from '../../assets/images/planet-uranus.svg';
