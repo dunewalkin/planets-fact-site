@@ -1,195 +1,212 @@
-// import React, { useState } from 'react';
+// import React, { useState, useEffect } from 'react';
+// import '../../components/Info/info.scss';
+// import sourceIcon from '../../assets/images/icon-source.svg';
 // import data from '../../data.json';
+// import planetEarth from '../../assets/images/planet-earth.svg';
+// import planetJupiter from '../../assets/images/planet-jupiter.svg';
+// import planetMars from '../../assets/images/planet-mars.svg';
+// import planetMercury from '../../assets/images/planet-mercury.svg';
+// import planetNeptune from '../../assets/images/planet-neptune.svg';
+// import planetSaturn from '../../assets/images/planet-saturn.svg';
+// import planetUranus from '../../assets/images/planet-uranus.svg';
+// import planetVenus from '../../assets/images/planet-venus.svg';
 
-// const Info = () => {
-//    const [currentPlanet, setCurrentPlanet] = useState(data[0]); // Инициализация первой планеты
+
+
+import React, { useState } from 'react';
+import data from '../../data'; // Импортируем данные о планетах
+
+const Info = () => {
+   const [currentPlanet, setCurrentPlanet] = useState(data[0]); // Инициализация первой планеты
  
-//    // Функция для изменения планеты
-//    const changePlanet = (planet) => {
-//      setCurrentPlanet(planet);
-//    };
- 
-//    return (
-//      <div>
-//        {/* Показывать текущее изображение планеты */}
-//        <img src={currentPlanet.images.planet} alt={currentPlanet.name} />
- 
-//        {/* Кнопки для выбора других планет */}
-//        {data.map((planet, index) => (
-//          <button key={index} onClick={() => changePlanet(planet)}>
-//            {planet.name}
-//          </button>
-//        ))}
-//      </div>
-//    );
-//  }
-
-// export default Info;
-
-
-
-
-import React, { useState, useEffect } from 'react';
-import '../../components/Info/info.scss';
-import sourceIcon from '../../assets/images/icon-source.svg';
-
-
-const Info = ({ selectedPlanet, isInfoVisible }) => {
-   const [activeTab, setActiveTab] = useState('overview');
-   const [planetImage, setPlanetImage] = useState(null);
-   const [geologyImage, setGeologyImage] = useState(null);
-   const [isGeologyImageReset, setIsGeologyImageReset] = useState(true);
-   
-   const handleTabClick = (tab) => {
-     setActiveTab(tab);
-     getPlanetImage(tab);
+   // Функция для изменения планеты
+   const changePlanet = (planet) => {
+     setCurrentPlanet(planet);
    };
  
-   const generatePlanetColor = (planetName) => {
-     return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
-   };   
+   return (
+     <div>
+       {/* Показывать текущее изображение планеты */}
+       <img src={currentPlanet.images.planet} alt={currentPlanet.name} />
+ 
+       {/* Кнопки для выбора других планет */}
+       {data.map((planet, index) => (
+         <button key={index} onClick={() => changePlanet(planet)}>
+           {planet.name}
+         </button>
+       ))}
+     </div>
+   );
+ }
 
-   const getPlanetImage = async (tab) => {
-      try {
-        if (selectedPlanet) {
-          let imagePath;
-          let geologyImagePath;
+export default Info;
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import '../../components/Info/info.scss';
+// import sourceIcon from '../../assets/images/icon-source.svg';
+
+
+// const Info = ({ selectedPlanet, isInfoVisible }) => {
+//    const [activeTab, setActiveTab] = useState('overview');
+//    const [planetImage, setPlanetImage] = useState(null);
+//    const [geologyImage, setGeologyImage] = useState(null);
+//    const [isGeologyImageReset, setIsGeologyImageReset] = useState(true);
+   
+//    const handleTabClick = (tab) => {
+//      setActiveTab(tab);
+//      getPlanetImage(tab);
+//    };
+ 
+//    const generatePlanetColor = (planetName) => {
+//      return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
+//    };   
+
+//    const getPlanetImage = async (tab) => {
+//       try {
+//         if (selectedPlanet) {
+//           let imagePath;
+//           let geologyImagePath;
     
-          if (tab === 'overview') {
-            imagePath = selectedPlanet.images.planet;
-            geologyImagePath = null;
-          } else if (tab === 'structure') {
-            imagePath = selectedPlanet.images.internal;
-            geologyImagePath = null;
-          } else if (tab === 'geology') {
-            imagePath = selectedPlanet.images.planet;
-            geologyImagePath = selectedPlanet.images.geology;
-          }
+//           if (tab === 'overview') {
+//             imagePath = selectedPlanet.images.planet;
+//             geologyImagePath = null;
+//           } else if (tab === 'structure') {
+//             imagePath = selectedPlanet.images.internal;
+//             geologyImagePath = null;
+//           } else if (tab === 'geology') {
+//             imagePath = selectedPlanet.images.planet;
+//             geologyImagePath = selectedPlanet.images.geology;
+//           }
     
-          console.log('imagePath:', imagePath);
-          console.log('geologyImagePath:', geologyImagePath);
+//           console.log('imagePath:', imagePath);
+//           console.log('geologyImagePath:', geologyImagePath);
     
-          const planetImageModule = await import(imagePath);
-          setPlanetImage(planetImageModule.default);
+//           const planetImageModule = await import(imagePath);
+//           setPlanetImage(planetImageModule.default);
     
-          if (geologyImagePath) {
-            const geologyImageModule = await import(geologyImagePath);
-            setGeologyImage(geologyImageModule.default);
-          } else {
-            setGeologyImage(null);
-          }
-        }
-      } catch (error) {
-        console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
-        setPlanetImage(null);
-      }
-    };
+//           if (geologyImagePath) {
+//             const geologyImageModule = await import(geologyImagePath);
+//             setGeologyImage(geologyImageModule.default);
+//           } else {
+//             setGeologyImage(null);
+//           }
+//         }
+//       } catch (error) {
+//         console.error(`Error loading image for ${selectedPlanet?.name}:`, error);
+//         setPlanetImage(null);
+//       }
+//     };
     
 
-  useEffect(() => {
-  if (activeTab === 'overview' || activeTab === 'structure') {
-    setIsGeologyImageReset(false); 
-    setTimeout(() => {
-      setGeologyImage(null);
-      setIsGeologyImageReset(true);
-    }, 100);
-  }
-}, [activeTab]);
+//   useEffect(() => {
+//   if (activeTab === 'overview' || activeTab === 'structure') {
+//     setIsGeologyImageReset(false); 
+//     setTimeout(() => {
+//       setGeologyImage(null);
+//       setIsGeologyImageReset(true);
+//     }, 100);
+//   }
+// }, [activeTab]);
 
  
-   useEffect(() => {
-     getPlanetImage(activeTab);
-   }, [selectedPlanet, activeTab]);
+//    useEffect(() => {
+//      getPlanetImage(activeTab);
+//    }, [selectedPlanet, activeTab]);
  
-   useEffect(() => {
-     handleTabClick('overview');
-   }, [selectedPlanet]);
+//    useEffect(() => {
+//      handleTabClick('overview');
+//    }, [selectedPlanet]);
 
-  return (
-   <main className={`info-container grid ${isInfoVisible ? '' : 'info-hidden'}`} >
-      {selectedPlanet && (
-         <>
-            <section className='top-section'>
-               <div className="pic-wrapper"> 
-                  {planetImage && <img src={planetImage} alt={selectedPlanet.name} />}
-                  <div className="geology-pic">
-                     {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}  
-                  </div>
-               </div>
+//   return (
+//    <main className={`info-container grid ${isInfoVisible ? '' : 'info-hidden'}`} >
+//       {selectedPlanet && (
+//          <>
+//             <section className='top-section'>
+//                <div className="pic-wrapper"> 
+//                   {planetImage && <img src={planetImage} alt={selectedPlanet.name} />}
+//                   <div className="geology-pic">
+//                      {isGeologyImageReset && geologyImage && <img src={geologyImage} alt={`Geology of ${selectedPlanet.name}`}/>}  
+//                   </div>
+//                </div>
 
-               <div className='main-info'>
-                  <h1>{selectedPlanet.name}</h1>
-                  <p className='main-content'>{selectedPlanet[activeTab].content}</p>
-                  <div className='link-wrapper'>
-                     <p>Source :</p>
-                     <a
-                        href={selectedPlanet[activeTab].source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                     >
-                        <p>Wikipedia</p>
-                        <img src={sourceIcon} alt="Source Icon" />
-                     </a>
-                   </div>
-               </div>
+//                <div className='main-info'>
+//                   <h1>{selectedPlanet.name}</h1>
+//                   <p className='main-content'>{selectedPlanet[activeTab].content}</p>
+//                   <div className='link-wrapper'>
+//                      <p>Source :</p>
+//                      <a
+//                         href={selectedPlanet[activeTab].source}
+//                         target="_blank"
+//                         rel="noopener noreferrer"
+//                      >
+//                         <p>Wikipedia</p>
+//                         <img src={sourceIcon} alt="Source Icon" />
+//                      </a>
+//                    </div>
+//                </div>
 
-               <div className='info-nav'>
-                  <nav className='secondary-nav'>
-                     <ul>
-                        <li className={activeTab === 'overview' ? 'active' : ''}
-                        style={generatePlanetColor(selectedPlanet.name)}
-                        onClick={() => handleTabClick('overview')}>
-                           <h4 className='nav-number'>01</h4>
-                           <h4 className='nav-title'>overview</h4>
-                           <h4 className='nav-title-sm'>overview</h4>
-                        </li>
-                        <li className={activeTab === 'structure' ? 'active' : ''} 
-                        style={generatePlanetColor(selectedPlanet.name)}
-                        onClick={() => handleTabClick('structure')}>
-                           <h4 className='nav-number'>02</h4>
-                           <h4 className='nav-title'>internal structure</h4>
-                           <h4 className='nav-title-sm'>structure</h4>
-                        </li>
-                        <li className={activeTab === 'geology' ? 'active' : ''} 
-                        style={generatePlanetColor(selectedPlanet.name)}
-                        onClick={() => handleTabClick('geology')}>
-                           <h4 className='nav-number'>03</h4>
-                           <h4 className='nav-title'>surface geology</h4>
-                           <h4 className='nav-title-sm'>surface</h4>
-                        </li>
-                     </ul>
-                  </nav>
-               </div>
-            </section>
+//                <div className='info-nav'>
+//                   <nav className='secondary-nav'>
+//                      <ul>
+//                         <li className={activeTab === 'overview' ? 'active' : ''}
+//                         style={generatePlanetColor(selectedPlanet.name)}
+//                         onClick={() => handleTabClick('overview')}>
+//                            <h4 className='nav-number'>01</h4>
+//                            <h4 className='nav-title'>overview</h4>
+//                            <h4 className='nav-title-sm'>overview</h4>
+//                         </li>
+//                         <li className={activeTab === 'structure' ? 'active' : ''} 
+//                         style={generatePlanetColor(selectedPlanet.name)}
+//                         onClick={() => handleTabClick('structure')}>
+//                            <h4 className='nav-number'>02</h4>
+//                            <h4 className='nav-title'>internal structure</h4>
+//                            <h4 className='nav-title-sm'>structure</h4>
+//                         </li>
+//                         <li className={activeTab === 'geology' ? 'active' : ''} 
+//                         style={generatePlanetColor(selectedPlanet.name)}
+//                         onClick={() => handleTabClick('geology')}>
+//                            <h4 className='nav-number'>03</h4>
+//                            <h4 className='nav-title'>surface geology</h4>
+//                            <h4 className='nav-title-sm'>surface</h4>
+//                         </li>
+//                      </ul>
+//                   </nav>
+//                </div>
+//             </section>
 
-            <footer className='bottom-section'>
-               <div className="footer-item">
-                  <h5 className='footer-title'>rotation time</h5>  
-                  <h2 className="footer-info">{selectedPlanet.rotation}</h2>               
-               </div>
+//             <footer className='bottom-section'>
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>rotation time</h5>  
+//                   <h2 className="footer-info">{selectedPlanet.rotation}</h2>               
+//                </div>
 
-               <div className="footer-item">
-                  <h5 className='footer-title'>revolution time</h5>              
-                  <h2 className="footer-info">{selectedPlanet.revolution}</h2>               
-               </div>
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>revolution time</h5>              
+//                   <h2 className="footer-info">{selectedPlanet.revolution}</h2>               
+//                </div>
 
-               <div className="footer-item">
-                  <h5 className='footer-title'>radius</h5>
-                  <h2 className="footer-info">{selectedPlanet.radius}</h2>
-               </div>
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>radius</h5>
+//                   <h2 className="footer-info">{selectedPlanet.radius}</h2>
+//                </div>
 
-               <div className="footer-item">
-                  <h5 className='footer-title'>average temp.</h5>
-                  <h2 className="footer-info">{selectedPlanet.temperature}</h2>             
-               </div>
-            </footer> 
-         </>
-      )} 
-    </main>
-  )
-}
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>average temp.</h5>
+//                   <h2 className="footer-info">{selectedPlanet.temperature}</h2>             
+//                </div>
+//             </footer> 
+//          </>
+//       )} 
+//     </main>
+//   )
+// }
 
-export default Info
+// export default Info
 
 
 
