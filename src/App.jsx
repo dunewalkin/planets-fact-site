@@ -3,7 +3,8 @@ import './assets/styles/fonts.scss';
 import './assets/styles/global.scss';
 import Header from './components/Header/Header';
 import Info from './components/Info/Info';
-import data from './data.json'; 
+//import data from './data.json'; 
+import data from './data';
 
 const App = () => {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
