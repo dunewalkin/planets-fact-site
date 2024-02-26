@@ -1,7 +1,109 @@
 // import React, { useState, useEffect } from 'react';
 // import '../../components/Info/info.scss';
 // import sourceIcon from '../../assets/images/icon-source.svg';
-// import data from '../../data.json';
+
+
+// const Info = ({ selectedPlanet, isInfoVisible }) => {
+//    const [activeTab, setActiveTab] = useState('overview');
+   
+//    const handleTabClick = (tab) => {
+//      setActiveTab(tab);
+//    };
+ 
+//    const generatePlanetColor = (planetName) => {
+//      return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
+//    };   
+
+ 
+//    useEffect(() => {
+//      handleTabClick('overview');
+//    }, [selectedPlanet]);
+
+//   return (
+//    <main className={`info-container grid ${isInfoVisible ? '' : 'info-hidden'}`} >
+//       {selectedPlanet && (
+//          <>
+//             <section className='top-section'>
+//                <div className="pic-wrapper"> 
+//                   <img src="" alt="" />
+//                </div>
+
+//                <div className='main-info'>
+//                   <h1>{selectedPlanet.name}</h1>
+//                   <p className='main-content'>{selectedPlanet[activeTab].content}</p>
+//                   <div className='link-wrapper'>
+//                      <p>Source :</p>
+//                      <a
+//                         href={selectedPlanet[activeTab].source}
+//                         target="_blank"
+//                         rel="noopener noreferrer"
+//                      >
+//                         <p>Wikipedia</p>
+//                         <img src={sourceIcon} alt="Source Icon" />
+//                      </a>
+//                    </div>
+//                </div>
+
+//                <div className='info-nav'>
+//                   <nav className='secondary-nav'>
+//                      <ul>
+//                         <li className={activeTab === 'overview' ? 'active' : ''}
+//                         style={generatePlanetColor(selectedPlanet.name)}
+//                         onClick={() => handleTabClick('overview')}>
+//                            <h4 className='nav-number'>01</h4>
+//                            <h4 className='nav-title'>overview</h4>
+//                            <h4 className='nav-title-sm'>overview</h4>
+//                         </li>
+//                         <li className={activeTab === 'structure' ? 'active' : ''} 
+//                         style={generatePlanetColor(selectedPlanet.name)}
+//                         onClick={() => handleTabClick('structure')}>
+//                            <h4 className='nav-number'>02</h4>
+//                            <h4 className='nav-title'>internal structure</h4>
+//                            <h4 className='nav-title-sm'>structure</h4>
+//                         </li>
+//                         <li className={activeTab === 'geology' ? 'active' : ''} 
+//                         style={generatePlanetColor(selectedPlanet.name)}
+//                         onClick={() => handleTabClick('geology')}>
+//                            <h4 className='nav-number'>03</h4>
+//                            <h4 className='nav-title'>surface geology</h4>
+//                            <h4 className='nav-title-sm'>surface</h4>
+//                         </li>
+//                      </ul>
+//                   </nav>
+//                </div>
+//             </section>
+
+//             <footer className='bottom-section'>
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>rotation time</h5>  
+//                   <h2 className="footer-info">{selectedPlanet.rotation}</h2>               
+//                </div>
+
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>revolution time</h5>              
+//                   <h2 className="footer-info">{selectedPlanet.revolution}</h2>               
+//                </div>
+
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>radius</h5>
+//                   <h2 className="footer-info">{selectedPlanet.radius}</h2>
+//                </div>
+
+//                <div className="footer-item">
+//                   <h5 className='footer-title'>average temp.</h5>
+//                   <h2 className="footer-info">{selectedPlanet.temperature}</h2>             
+//                </div>
+//             </footer> 
+//          </>
+//       )} 
+//     </main>
+//   )
+// }
+
+// export default Info
+
+
+
 
 
 import React, { useState } from 'react';
@@ -9,22 +111,41 @@ import data from '../../data'; // Импортируем данные о пла�
 
 const Info = () => {
    const [currentPlanet, setCurrentPlanet] = useState(data[0]); // Инициализация первой планеты
-   const [currentImageType, setCurrentImageType] = useState('planet'); // Текущий тип изображения: 'planet', 'internal' или 'geology'
+   const [currentContentType, setCurrentContentType] = useState('planet'); // Текущий тип изображения: 'planet', 'internal' или 'geology'
  
    // Функция для изменения планеты
    const changePlanet = (planet) => {
      setCurrentPlanet(planet);
    };
 
-   // Функция для изменения типа изображения
-   const changeImageType = (type) => {
-     setCurrentImageType(type);
+   // Функция для изменения типа контента
+   const changeContentType = (type) => {
+     setCurrentContentType(type);
    };
  
    return (
      <div>
        {/* Показывать текущее изображение планеты */}
-       <img src={currentPlanet.images[currentImageType]} alt={currentPlanet.name} />
+       <img src={currentPlanet.images[currentContentType]} alt={currentPlanet.name} />
+       <h2>{currentPlanet.name}</h2>
+       {currentContentType === 'planet' && (
+         <div>
+           <p>{currentPlanet.overview.content}</p>
+           <p>Source: <a href={currentPlanet.overview.source} target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
+         </div>
+       )}
+       {currentContentType === 'internal' && (
+         <div>
+           <p>{currentPlanet.structure.content}</p>
+           <p>Source: <a href={currentPlanet.structure.source} target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
+         </div>
+       )}
+       {currentContentType === 'geology' && (
+         <div>
+           <p>{currentPlanet.geology.content}</p>
+           <p>Source: <a href={currentPlanet.geology.source} target="_blank" rel="noopener noreferrer">Wikipedia</a></p>
+         </div>
+       )}
  
        {/* Кнопки для выбора других планет */}
        {data.map((planet, index) => (
@@ -33,15 +154,16 @@ const Info = () => {
          </button>
        ))}
 
-       {/* Дополнительные кнопки для переключения типа изображения */}
-       <button onClick={() => changeImageType('planet')}>Overview</button>
-       <button onClick={() => changeImageType('internal')}>Structure</button>
-       <button onClick={() => changeImageType('geology')}>Geology</button>
+       {/* Дополнительные кнопки для переключения типа контента */}
+       <button onClick={() => changeContentType('planet')}>Overview</button>
+       <button onClick={() => changeContentType('internal')}>Structure</button>
+       <button onClick={() => changeContentType('geology')}>Geology</button>
      </div>
    );
  }
 
 export default Info;
+
 
 
 
