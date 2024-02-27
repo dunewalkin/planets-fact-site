@@ -21,10 +21,10 @@ const App = () => {
    };
 
    return (
-       <div className="app">
+      <main className='main-container'>
            <Header onPlanetSelect={handlePlanetSelect} />
            <Info selectedPlanet={selectedPlanet} />
-       </div>
+      </main>
    );
 };
 
