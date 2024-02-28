@@ -3,9 +3,12 @@
 
 .primary-nav {
 
+   display: block;
+
    @include mq (small) {
       @include width-height(100%, 100vh);
       background-color: var(--clr-neutral-2);
+      display: none;
    } 
 
    ul {
@@ -88,13 +91,6 @@
    } 
 }
 
-.primary-nav {
-   display: block;
-   @include mq (small) {
-      display: none;
-    } 
- }
- 
  .primary-nav.visible {
    display: block;
  }
