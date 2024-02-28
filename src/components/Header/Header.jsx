@@ -15,7 +15,7 @@ const Header = ({ onPlanetSelect, toggleInfoVisibility, isNavVisible, toggleNavV
    return (
       <header className='header-container'>
         <div className='header-top'>
-          <h3>the planets</h3>
+          <h1 className='heading-m'>the planets</h1>
           <button className='menu-btn' onClick={toggleNavVisibilityLocal}>
             <svg className={`burger-icon ${isIconActive ? 'burger-icon-active' : ''}`} xmlns="http://www.w3.org/2000/svg" width="24" height="17"><g fillRule="evenodd"><path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z"/></g></svg>
       

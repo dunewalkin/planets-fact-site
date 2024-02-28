@@ -41,7 +41,7 @@ body {
    padding: 0;
 }
 
- h1 {
+ .heading-xl {
    font-family: Antonio, sans-serif;
    font-size: 5rem;
    font-weight: 400;
@@ -56,7 +56,7 @@ body {
    }
  }
 
- h2 {
+ .heading-l {
    font-family: Antonio, sans-serif;
    font-size: 2.5rem;
    font-weight: 400;
@@ -76,7 +76,7 @@ body {
    }
  }
 
- h3 {
+ .heading-m {
    font-family: Antonio, sans-serif;
    font-size: 1.75rem;
    font-weight: 400;
@@ -84,7 +84,7 @@ body {
    letter-spacing: -0.06563rem;
  }
 
- h4 {
+ .heading-s {
    font-family: League Spartan, sans-serif;
    font-size: 0.75rem;
    font-weight: 700;
@@ -99,7 +99,7 @@ body {
    }
  }
 
- h5 {
+ .heading-xs {
    font-family: League Spartan, sans-serif;
    font-size: 0.6875rem;
    font-weight: 700;
@@ -107,7 +107,7 @@ body {
    letter-spacing: 0.0625rem;
  }
 
- h6 {
+ .heading-xxs {
    font-family: League Spartan, sans-serif;
    font-size: 0.5rem;
    font-weight: 700;

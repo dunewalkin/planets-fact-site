@@ -51,7 +51,7 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
                </div>
 
                <div className='main-info'>
-                  <h1>{selectedPlanet.name}</h1>
+                  <h1 className='heading-xl'>{selectedPlanet.name}</h1>
 
                   {currentContentType === 'planet' && (
                      <div>
@@ -110,23 +110,23 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
                         <li className={currentContentType === 'planet' ? 'active' : ''}
                         style={generatePlanetColor(selectedPlanet.name)}
                         onClick={() => changeContentType('planet')}>
-                           <h4 className='nav-number'>01</h4>
-                           <h4 className='nav-title'>overview</h4>
-                           <h4 className='nav-title-sm'>overview</h4>
+                           <h2 className='nav-number heading-s'>01</h2>
+                           <h2 className='nav-title heading-s'>overview</h2>
+                           <h2 className='nav-title-sm heading-s'>overview</h2>
                         </li>
                         <li className={currentContentType === 'internal' ? 'active' : ''}
                         style={generatePlanetColor(selectedPlanet.name)}
                         onClick={() => changeContentType('internal')}>
-                           <h4 className='nav-number'>02</h4>
-                           <h4 className='nav-title'>internal structure</h4>
-                           <h4 className='nav-title-sm'>structure</h4>
+                           <h2 className='nav-number heading-s'>02</h2>
+                           <h2 className='nav-title heading-s'>internal structure</h2>
+                           <h2 className='nav-title-sm heading-s'>structure</h2>
                         </li>
                         <li className={currentContentType === 'geology' ? 'active' : ''} 
                         style={generatePlanetColor(selectedPlanet.name)}
                         onClick={() => changeContentType('geology')}>
-                           <h4 className='nav-number'>03</h4>
-                           <h4 className='nav-title'>surface geology</h4>
-                           <h4 className='nav-title-sm'>surface</h4>
+                           <h2 className='nav-number heading-s'>03</h2>
+                           <h2 className='nav-title heading-s'>surface geology</h2>
+                           <h2 className='nav-title-sm heading-s'>surface</h2>
                         </li>
                      </ul>
                   </nav>
@@ -135,23 +135,23 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
 
             <footer className='bottom-section'>
                <div className="footer-item">
-                  <h5 className='footer-title'>rotation time</h5>  
-                  <h2 className="footer-info">{selectedPlanet.rotation}</h2>               
+                  <h3 className='footer-title heading-xs'>rotation time</h3>  
+                  <h4 className="footer-info heading-l">{selectedPlanet.rotation}</h4>               
                </div>
 
                <div className="footer-item">
-                  <h5 className='footer-title'>revolution time</h5>              
-                  <h2 className="footer-info">{selectedPlanet.revolution}</h2>               
+                  <h3 className='footer-title heading-xs'>revolution time</h3>              
+                  <h4 className="footer-info heading-l">{selectedPlanet.revolution}</h4>               
                </div>
 
                <div className="footer-item">
-                  <h5 className='footer-title'>radius</h5>
-                  <h2 className="footer-info">{selectedPlanet.radius}</h2>
+                  <h3 className='footer-title heading-xs'>radius</h3>
+                  <h4 className="footer-info heading-l">{selectedPlanet.radius}</h4>
                </div>
 
                <div className="footer-item">
-                  <h5 className='footer-title'>average temp.</h5>
-                  <h2 className="footer-info">{selectedPlanet.temperature}</h2>             
+                  <h3 className='footer-title heading-xs'>average temp.</h3>
+                  <h4 className="footer-info heading-l">{selectedPlanet.temperature}</h4>             
                </div>
             </footer> 
 

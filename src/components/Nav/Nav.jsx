@@ -16,7 +16,7 @@ const Nav = ({ onPlanetSelect, isVisible }) => {
             >
               <div className='planet-nav-item'>
                 <div className='bullet-item'></div>
-                <h5 className='nav-item'>{planet.name}</h5>
+                <h1 className='nav-item heading-xs'>{planet.name}</h1>
               </div>
               <img className='arrow-item' src={arrowIcon} alt="Arrow icon" />
             </li>
