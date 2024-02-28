@@ -31,7 +31,7 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
     };
 
     return (
-        <main className={`info-container grid ${isInfoVisible ? '' : 'info-hidden'}`} >
+        <div className={`info-container grid ${isInfoVisible ? '' : 'info-hidden'}`} >
             {selectedPlanet && (
                 <>
 
@@ -159,7 +159,7 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
                    
                 </>
             )}
-        </main>
+        </div>
     );
 };
 
