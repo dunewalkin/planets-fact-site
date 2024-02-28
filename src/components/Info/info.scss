@@ -337,3 +337,7 @@
    color: hsl(var(--clr-white), .5);
 }
 
+.pic-wrapper img {
+   animation: fadeIn 0.5s ease-in-out;
+ }
+
