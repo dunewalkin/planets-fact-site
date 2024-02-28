@@ -26,6 +26,7 @@
       @include flexbox(row, space-between, center, 0);
       padding: 1rem 1.5rem;
       border-bottom: 1px solid hsl(var(--clr-white), .2);
+      background-color: var(--clr-neutral-2);
    }
 }
 
@@ -38,3 +39,14 @@
       display: block;     
    }
 }
+
+.burger-icon {
+   fill: var(--clr-neutral-1);
+}
+
+.burger-icon-active {
+   fill: hsl(var(--clr-white), .2);
+}
+
+
+

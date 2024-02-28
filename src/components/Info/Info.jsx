@@ -6,8 +6,6 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
     const [currentContentType, setCurrentContentType] = useState('planet');
     const [secondImageType, setSecondImageType] = useState('planet');
 
-    const [activeTab, setActiveTab] = useState('overview');
-
     const generatePlanetColor = (planetName) => {
       return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
     }; 
@@ -99,21 +97,21 @@ const Info = ({ selectedPlanet, isInfoVisible }) => {
                <div className='info-nav'>
                   <nav className='secondary-nav'>
                      <ul>
-                        <li className={activeTab === 'overview' ? 'active' : ''}
+                        <li className={currentContentType === 'planet' ? 'active' : ''}
                         style={generatePlanetColor(selectedPlanet.name)}
                         onClick={() => changeContentType('planet')}>
                            <h4 className='nav-number'>01</h4>
                            <h4 className='nav-title'>overview</h4>
                            <h4 className='nav-title-sm'>overview</h4>
                         </li>
-                        <li className={activeTab === 'structure' ? 'active' : ''} 
+                        <li className={currentContentType === 'internal' ? 'active' : ''}
                         style={generatePlanetColor(selectedPlanet.name)}
                         onClick={() => changeContentType('internal')}>
                            <h4 className='nav-number'>02</h4>
                            <h4 className='nav-title'>internal structure</h4>
                            <h4 className='nav-title-sm'>structure</h4>
                         </li>
-                        <li className={activeTab === 'geology' ? 'active' : ''} 
+                        <li className={currentContentType === 'geology' ? 'active' : ''} 
                         style={generatePlanetColor(selectedPlanet.name)}
                         onClick={() => changeContentType('geology')}>
                            <h4 className='nav-number'>03</h4>
