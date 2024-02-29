@@ -9,12 +9,13 @@
    padding: 2.5rem;
 
    @include mq (medium) {
-      @include width-height(100%, 100%);
-      @include flexbox(column, space-evenly, center, 0);
+      display: block;
+      // @include width-height(100%, 100%);
+      // @include flexbox(column, space-evenly, center, 0);
    }
 
    @include mq (small) {
-      display: block;
+      // display: block;
       padding: 0 0 2.94rem;
    }
 }
@@ -25,6 +26,12 @@
    }
 }
 
+.top-section {
+   @include mq (medium) {
+      margin-bottom: 1.75rem;
+   }
+}
+
 
 
 //pic-section
@@ -32,11 +39,13 @@
 .pic-wrapper {
    position: relative;
    align-self: center;
-   @include width-height(21rem, 21rem);
+   @include flexbox(column, center, center, .5rem);
+   // @include width-height(21rem, 21rem);
    z-index: 1;
 
    @include mq (medium) {
-      @include width-height(17.8125rem, 17.8125rem);
+      max-width: 23rem
+      // @include width-height(17.8125rem, 17.8125rem);
    }
 
    @include mq (small) {
@@ -45,14 +54,14 @@
    }
 }
 
-.pic-wrapper img,
+
 .geology-pic img {
    @include width-height(100%, auto);
    object-fit: cover;
 }
 
 .geology-pic {
-   @include width-height(10.1875rem, 12.4375rem);
+   @include width-height(8.1875rem, auto);
    @include position(absolute, 65%, auto, auto, 50%);
    transform: translateX(-50%);
    z-index: 2;
