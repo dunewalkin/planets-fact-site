@@ -11,7 +11,7 @@ const App = () => {
    const [isNavVisible, setIsNavVisible] = useState(false);
 
    useEffect(() => {
-       const initialPlanetData = data.find((planet) => planet.name === 'Mercury');
+       const initialPlanetData = data.find((planet) => planet.name === 'Earth');
        if (initialPlanetData) {
            setSelectedPlanet(initialPlanetData);
        }
