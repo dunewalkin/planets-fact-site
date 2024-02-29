@@ -10,8 +10,6 @@
 
    @include mq (medium) {
       display: block;
-      // @include width-height(100%, 100%);
-      // @include flexbox(column, space-evenly, center, 0);
    }
 
    @include mq (small) {
@@ -40,16 +38,14 @@
    position: relative;
    align-self: center;
    @include flexbox(column, center, center, .5rem);
-   // @include width-height(21rem, 21rem);
    z-index: 1;
 
    @include mq (medium) {
-      max-width: 23rem
-      // @include width-height(17.8125rem, 17.8125rem);
+      max-width: 23rem;
    }
 
    @include mq (small) {
-      @include width-height(10.8125rem, 10.8125rem);
+      max-width: 14rem;
       margin-block: 4rem;
    }
 }
