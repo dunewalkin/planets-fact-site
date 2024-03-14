@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import './assets/styles/fonts.scss';
 import './assets/styles/global.scss';
 import Header from './components/Header/Header';
 import Info from './components/Info/Info';
 import data from './data';
+
+export const PlanetContext = createContext();
 
 const App = () => {
    const [selectedPlanet, setSelectedPlanet] = useState(null);
@@ -37,8 +39,13 @@ const App = () => {
             toggleInfoVisibility={toggleInfoVisibility}
             toggleNavVisibility ={toggleNavVisibility }
             isNavVisible={isNavVisible} />
-           <Info selectedPlanet={selectedPlanet}
-            isInfoVisible={isInfoVisible}/>
+            <PlanetContext.Provider value = {selectedPlanet}>
+               <Info 
+               // selectedPlanet={selectedPlanet}
+               isInfoVisible={isInfoVisible}
+               />
+            </PlanetContext.Provider>
+           
       </main>
    );
 };

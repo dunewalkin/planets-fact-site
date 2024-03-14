@@ -1,17 +1,23 @@
 @font-face {
    font-family: "League Spartan";
-   src: url('../fonts/League_Spartan/LeagueSpartan-Regular.ttf') format('truetype');
+   src:   local("League Spartan Regular"),
+          url(../fonts/League_Spartan/LeagueSpartan-Regular.woff2) format('woff2'),
+          url(../fonts/League_Spartan/LeagueSpartan-Regular.woff) format('woff');
    font-weight: 400;
 }
 
 @font-face {
    font-family: "League Spartan";
-   src: url('../fonts/League_Spartan/LeagueSpartan-Bold.ttf') format('truetype');
+   src:   local("League Spartan Bold"),
+          url(../fonts/League_Spartan/LeagueSpartan-Bold.woff2) format('woff2'),
+          url(../fonts/League_Spartan/LeagueSpartan-Bold.woff) format('woff');
    font-weight: 700;
 }
 
 @font-face {
    font-family: "Antonio";
-   src: url('../fonts/Antonio/Antonio-Regular.ttf') format('truetype');
+   src:   local("Antonio Regular"),
+          url(../fonts/Antonio/Antonio-Regular.woff2) format('woff2'),
+          url(../fonts/Antonio/Antonio-Regular.woff) format('woff');
    font-weight: 400;
 }

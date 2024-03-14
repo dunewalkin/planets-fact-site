@@ -38,9 +38,6 @@ import neptune from './assets/images/planet-neptune.svg';
 import neptuneInternal from './assets/images/planet-neptune-internal.svg';
 import neptuneGeology from './assets/images/geology-neptune.png';
 
-// Экспорт данных о планетах
-
-
 export default [
   {
     "name": "Mercury",
