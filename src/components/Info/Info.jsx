@@ -13,6 +13,8 @@ const Info = ({ isInfoVisible }) => {
       return { '--clr-hover': `var(--clr-${planetName.toLowerCase()})` };
    }; 
 
+   //test
+
    useEffect(() => {
       setCurrentContentType('planet'); 
       setSecondImageType('planet');
@@ -36,7 +38,7 @@ const Info = ({ isInfoVisible }) => {
       <div className={`info-container grid ${isInfoVisible ? '' : 'info-hidden'}`} >
          {selectedPlanet && (
             <>
-               <section className='top-section'>
+               <section className='main-section'>
                   <div className="pic-wrapper"> 
                   <img 
                      src={currentContentType === 'geology' ? selectedPlanet.images['planet'] : selectedPlanet.images[currentContentType]} 
@@ -134,7 +136,7 @@ const Info = ({ isInfoVisible }) => {
                   </div>
                </section>
 
-               <footer className='bottom-section'>
+               <footer className='footer-section'>
                   <div className="footer-item">
                      <h3 className='footer-title heading-xs'>rotation time</h3>  
                      <h4 className="footer-info heading-l">{selectedPlanet.rotation}</h4>               

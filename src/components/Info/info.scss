@@ -24,7 +24,7 @@
    }
 }
 
-.top-section {
+.main-section {
    @include mq (medium) {
       margin-bottom: 1.75rem;
    }
@@ -222,7 +222,7 @@
 
 //grid
 
-.top-section {
+.main-section {
    display: grid;
    grid-template-columns: repeat(12, 1fr);
    grid-template-rows: auto auto;
@@ -304,7 +304,7 @@
 
 //bottom-section
 
-.bottom-section {
+.footer-section {
    display: grid;
    grid-template-columns: repeat(12, 1fr);
    grid-gap: 1.87rem;

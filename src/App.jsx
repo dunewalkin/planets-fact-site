@@ -40,10 +40,7 @@ const App = () => {
             toggleNavVisibility ={toggleNavVisibility }
             isNavVisible={isNavVisible} />
             <PlanetContext.Provider value = {selectedPlanet}>
-               <Info 
-               // selectedPlanet={selectedPlanet}
-               isInfoVisible={isInfoVisible}
-               />
+               <Info isInfoVisible={isInfoVisible}/>
             </PlanetContext.Provider>
            
       </main>
