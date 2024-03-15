@@ -1,0 +1,40 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.footer-section {
+   display: grid;
+   grid-template-columns: repeat(12, 1fr);
+   grid-gap: 1.87rem;
+   width: 100%;
+
+   @include mq (medium) {
+      grid-gap: 0.69rem; 
+   }
+
+   @include mq (small) {
+      @include flexbox(column, center, center, .5rem);
+      padding-inline: 1.5rem;
+   }
+}
+
+.footer-item {
+   @include width-height(100%, 8rem);
+   grid-column-end: span 3; 
+   padding: 1.25rem 1.44rem;
+   border: 1px solid hsl(var(--clr-white), .2);
+
+   @include mq (medium) {
+      height: 5.5rem; 
+      padding: 1rem 0.94rem;
+   }
+
+   @include mq (small) {
+      @include flexbox(row, space-between, center, 0);
+      @include width-height(100%, 3rem);
+      padding: 0 1.5rem;
+   }
+}
+
+.footer-title {
+   color: hsl(var(--clr-white), .5);
+}

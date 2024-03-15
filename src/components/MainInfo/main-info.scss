@@ -1,0 +1,38 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.main-info {
+   @include flexbox(column, flex-start, flex-start, .5rem);
+
+   @include mq (medium) {
+      gap: 1.5rem
+   }
+
+   @include mq (small) {
+      @include flexbox(column, center, center, 0);
+      margin-bottom: 1.75rem;
+      padding-inline: 1.5rem;
+   }
+}
+
+.main-content {
+   @include mq (small) {
+      margin-block: 1rem .62rem;
+      text-align: center;
+   }
+}
+
+.link-wrapper {
+   @include flexbox(row, flex-start, center, .5rem);
+}
+
+.link-wrapper p {
+   color: hsl(var(--clr-white), .5);
+   font-weight: 700;
+}
+
+.link-wrapper a {
+   @include flexbox(row, flex-start, center, .5rem);
+   font-weight: 700;
+   color: hsl(var(--clr-white), .5);
+}

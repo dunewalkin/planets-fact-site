@@ -1,0 +1,111 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.secondary-nav {
+   @include mq (small) {
+      border-bottom: 1px solid hsl(var(--clr-white), .2);       
+   }
+}
+
+.secondary-nav ul {
+   @include flexbox(column, flex-start, center, 1rem);
+
+   @include mq (small) {
+      @include flexbox(row, space-between, center, 0);
+      padding-inline: 1.5rem;
+      // border-bottom: 1px solid hsl(var(--clr-white), .2);       
+   }
+}
+
+.secondary-nav li {
+   @include width-height(100%, 3rem);
+   @include flexbox(row, flex-start, center, 1.75rem);
+   background-color: var(--clr-neutral-2);
+   border: 1px solid hsl(var(--clr-white), .2);
+   padding-left: 1.75rem;
+   cursor: pointer;
+   transition: .2s ease;
+
+   &:hover,:focus-visible {
+      background-color: hsl(var(--clr-neutral-5), .2);
+      border: 1px solid transparent;
+   }  
+
+   @include mq (small) {
+      @include width-height(auto, 3.125rem);
+      background-color: transparent;
+      padding: 0;
+      border: none;
+
+      &:hover,:focus-visible {
+         background-color: transparent;
+         border: 1px solid transparent;
+      } 
+   }
+}
+
+
+.secondary-nav {
+
+   .active {
+      background-color: var(--clr-hover);
+      border: 1px solid transparent;
+
+      &:hover,:focus-visible {
+         background-color: var(--clr-hover);
+         border: 1px solid transparent;
+      }
+
+      @include mq (small) {
+         position: relative;
+         background-color: transparent;
+
+         &:hover,:focus-visible {
+            background-color: transparent;
+            border: 1px solid transparent;
+         }
+
+         &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%; 
+            transform: translateX(-50%); 
+            @include width-height(100%, 4px);
+            background-color: var(--clr-hover);
+          }
+      }
+
+   }
+
+   .active h4 {
+      @include mq (small) {
+         color: var(--clr-neutral-1);
+      }
+
+   }
+}
+
+.nav-number {
+   color: hsl(var(--clr-white), .5);
+
+   @include mq (small) {
+      display: none;
+   }
+}
+
+.nav-title {
+   display: block;
+
+   @include mq (small) {
+      display: none;
+   }
+}
+
+.nav-title-sm {
+   display: none;
+   
+   @include mq (small) {
+      display: block;
+   }
+}

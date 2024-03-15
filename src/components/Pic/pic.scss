@@ -1,0 +1,43 @@
+@use '../../assets/styles/mixins.scss' as *;
+@import '../../assets/styles/variables';
+
+.pic-wrapper {
+   position: relative;
+   align-self: center;
+   @include flexbox(column, center, center, .5rem);
+   z-index: 1;
+
+   @include mq (medium) {
+      max-width: 23rem;
+   }
+
+   @include mq (small) {
+      max-width: 14rem;
+      margin-block: 4rem;
+   }
+}
+
+.pic-wrapper img {
+   animation: fadeIn 0.5s ease-in-out;
+ }
+
+
+.geology-pic img {
+   @include width-height(100%, auto);
+   object-fit: cover;
+}
+
+.geology-pic {
+   @include width-height(8.1875rem, auto);
+   @include position(absolute, 65%, auto, auto, 50%);
+   transform: translateX(-50%);
+   z-index: 2;
+
+   @include mq (medium) {
+      @include width-height(7.1875rem, 9.4375rem);
+   }
+
+   @include mq (small) {
+      @include width-height(5.1875rem, 7.4375rem);
+   }
+}
